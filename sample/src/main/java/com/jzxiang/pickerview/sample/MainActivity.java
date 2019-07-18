@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setWheelItemTextSelectorColor(getResources().getColor(R.color.timepicker_toolbar_bg))
                 .setWheelItemTextSize(12)
                 .build();
-        mDialogAll.setTimeChangeListener(new OnTimeChangeListener() {
-            @Override
-            public void onTimeChange() {
-                Toast.makeText(MainActivity.this,"时间发生变化",Toast.LENGTH_LONG).show();
-            }
-        });
+//        mDialogAll.setTimeChangeListener(new OnTimeChangeListener() {
+//            @Override
+//            public void onTimeChange() {
+//                Toast.makeText(MainActivity.this,"时间发生变化",Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 //        mDialogAll = new TimePickerDialog.Builder()
 //                .setMinMillseconds(System.currentTimeMillis())

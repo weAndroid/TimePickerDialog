@@ -30,6 +30,7 @@ public class TimeWheel {
         @Override
         public void onChanged(WheelView wheel, int oldValue, int newValue) {
             updateMonths();
+            if (onTimeChangeListener != null)
             onTimeChangeListener.onTimeChange();
         }
     };
@@ -37,20 +38,23 @@ public class TimeWheel {
         @Override
         public void onChanged(WheelView wheel, int oldValue, int newValue) {
             updateDays();
-            onTimeChangeListener.onTimeChange();
+            if (onTimeChangeListener != null)
+                onTimeChangeListener.onTimeChange();
         }
     };
     OnWheelChangedListener dayListener = new OnWheelChangedListener() {
         @Override
         public void onChanged(WheelView wheel, int oldValue, int newValue) {
             updateHours();
-            onTimeChangeListener.onTimeChange();
+            if (onTimeChangeListener != null)
+                onTimeChangeListener.onTimeChange();
         }
     };
     OnWheelChangedListener minuteListener = new OnWheelChangedListener() {
         @Override
         public void onChanged(WheelView wheel, int oldValue, int newValue) {
             updateMinutes();
+            if (onTimeChangeListener != null)
             onTimeChangeListener.onTimeChange();
         }
     };
