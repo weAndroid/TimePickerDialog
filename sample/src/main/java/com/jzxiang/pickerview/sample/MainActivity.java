@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jzxiang.pickerview.TimePickerDialog;
+import com.jzxiang.pickerview.TimeWheel;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
+import com.jzxiang.pickerview.listener.OnTimeChangeListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,6 +51,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setWheelItemTextSelectorColor(getResources().getColor(R.color.timepicker_toolbar_bg))
                 .setWheelItemTextSize(12)
                 .build();
+        mDialogAll.setTimeChangeListener(new OnTimeChangeListener() {
+            @Override
+            public void onTimeChange() {
+                Toast.makeText(MainActivity.this,"时间发生变化",Toast.LENGTH_LONG).show();
+            }
+        });
 
 //        mDialogAll = new TimePickerDialog.Builder()
 //                .setMinMillseconds(System.currentTimeMillis())
@@ -72,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setType(Type.HOURS_MINS)
                 .setCallBack(this)
                 .build();
+
+
     }
 
     void initView() {

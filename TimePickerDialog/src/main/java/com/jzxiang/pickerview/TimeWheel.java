@@ -6,6 +6,7 @@ import android.view.View;
 import com.jzxiang.pickerview.adapters.NumericWheelAdapter;
 import com.jzxiang.pickerview.config.PickerConfig;
 import com.jzxiang.pickerview.data.source.TimeRepository;
+import com.jzxiang.pickerview.listener.OnTimeChangeListener;
 import com.jzxiang.pickerview.utils.PickerContants;
 import com.jzxiang.pickerview.utils.Utils;
 import com.jzxiang.pickerview.wheel.OnWheelChangedListener;
@@ -24,38 +25,45 @@ public class TimeWheel {
 
     PickerConfig mPickerConfig;
     TimeRepository mRepository;
+    OnTimeChangeListener onTimeChangeListener;
     OnWheelChangedListener yearListener = new OnWheelChangedListener() {
         @Override
         public void onChanged(WheelView wheel, int oldValue, int newValue) {
             updateMonths();
+            onTimeChangeListener.onTimeChange();
         }
     };
     OnWheelChangedListener monthListener = new OnWheelChangedListener() {
         @Override
         public void onChanged(WheelView wheel, int oldValue, int newValue) {
             updateDays();
+            onTimeChangeListener.onTimeChange();
         }
     };
     OnWheelChangedListener dayListener = new OnWheelChangedListener() {
         @Override
         public void onChanged(WheelView wheel, int oldValue, int newValue) {
             updateHours();
+            onTimeChangeListener.onTimeChange();
         }
     };
     OnWheelChangedListener minuteListener = new OnWheelChangedListener() {
         @Override
         public void onChanged(WheelView wheel, int oldValue, int newValue) {
             updateMinutes();
+            onTimeChangeListener.onTimeChange();
         }
     };
 
-    public TimeWheel(View view, PickerConfig pickerConfig) {
+    public TimeWheel(View view, PickerConfig pickerConfig, OnTimeChangeListener onTimeChangeListener) {
         mPickerConfig = pickerConfig;
 
         mRepository = new TimeRepository(pickerConfig);
         mContext = view.getContext();
+        this.onTimeChangeListener = onTimeChangeListener;
         initialize(view);
     }
+
 
     public void initialize(View view) {
         initView(view);

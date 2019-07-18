@@ -18,6 +18,7 @@ import com.jzxiang.pickerview.config.PickerConfig;
 import com.jzxiang.pickerview.data.Type;
 import com.jzxiang.pickerview.data.WheelCalendar;
 import com.jzxiang.pickerview.listener.OnDateSetListener;
+import com.jzxiang.pickerview.listener.OnTimeChangeListener;
 
 import java.util.Calendar;
 
@@ -33,6 +34,10 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
         TimePickerDialog timePickerDialog = new TimePickerDialog();
         timePickerDialog.initialize(pickerConfig);
         return timePickerDialog;
+    }
+
+    public TimeWheel getmTimeWheel() {
+        return mTimeWheel;
     }
 
     @Override
@@ -83,9 +88,15 @@ public class TimePickerDialog extends DialogFragment implements View.OnClickList
         sure.setText(mPickerConfig.mSureString);
         toolbar.setBackgroundColor(mPickerConfig.mThemeColor);
 
-        mTimeWheel = new TimeWheel(view, mPickerConfig);
+        mTimeWheel = new TimeWheel(view, mPickerConfig,onTimeChangeListener);
         return view;
     }
+    OnTimeChangeListener onTimeChangeListener;
+
+    public void setTimeChangeListener(OnTimeChangeListener onTimeChangeListener){
+        this.onTimeChangeListener = onTimeChangeListener;
+    }
+
 
     @Override
     public void onClick(View v) {
